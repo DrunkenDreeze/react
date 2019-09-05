@@ -1,3 +1,4 @@
+
 ## 脚手架构建项目
 ## cnpm install create-react-app -g
 ## create-react-app todolist
@@ -124,7 +125,4 @@ this.setState((prevState) => ({
 	shouldComponentUpdate() {return true;}更新组件之前；return true；更新    return false；不可更新
 	
 	componentWillUpdate   更新组件之前并且shouldComponentUpdate  return true；
-	
-	
-	
 	
