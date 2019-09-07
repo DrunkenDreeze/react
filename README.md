@@ -126,3 +126,29 @@ this.setState((prevState) => ({
 	
 	componentWillUpdate   更新组件之前并且shouldComponentUpdate  return true；
 	
+	
+#react UI框架  antd ： https://ant.design/index-cn
+cnpm install antd --save
+import "antd/dist/antd.css"
+import { Button, Input, List } from "antd";
+#<Button></Button>
+
+	
+#redux
+action  -(dispatch)->  store 
+							   -  (subscribe)->  componet  
+							   -  (prevState,action)  ->   reducer  -(newState)->  store
+cnpm install --save redux
+store/
+	index.js
+		import createStore from "redux";
+		import reducer from "./reducer.js"
+		store = createStore(reducer);
+		export default store;
+	reducer.js
+		defaultState = {};
+		export default (state = defaultState, action) => {return state}
+#*action接受state，不可以直接改变state，需要深复制一个newState
+redux devtools：chrome插件
+
+
