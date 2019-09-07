@@ -150,5 +150,10 @@ store/
 		export default (state = defaultState, action) => {return state}
 #*action接受state，不可以直接改变state，需要深复制一个newState
 redux devtools：chrome插件
+actionTypes:解决因为输入变量不报错的问题
+actionCreators：解决代码可维护性
+store是唯一的
+只有store能改变自己的数据；store的数据是拿到reducer的数据，自己改变内容
+reducer是个纯函数
 
 

@@ -1,3 +1,5 @@
+import { INPUT_CHANGE, ADD_ITEM, DELETE_TODO_ITEM } from "./actionTypes";
+
 const defaultState = {
 	inputValue: "",
 	list: []
@@ -5,20 +7,22 @@ const defaultState = {
 
 
 // action只能接受state，不能直接改变state，所以要复制出来一份newState
+// 纯函数：给定固定的输入，就会有固定的输出，而且不会有任何的副作用；不能含有settimeout，ajax等异步操作
 export default (state = defaultState, action) => {
-	if(action.type === "input_change") {
+	if(action.type === INPUT_CHANGE) {
 		const newState = JSON.parse(JSON.stringify(state));
 		newState.inputValue = action.value;
+		// state.inputValue = action.value; //这时候就有副作用了
 		return newState;
 	}
-	if(action.type === "add_item") {
+	if(action.type === ADD_ITEM) {
 		const newState = JSON.parse(JSON.stringify(state));
 		console.log(newState,action);
 		newState.list.push(newState.inputValue);
 		newState.inputValue = "";
 		return newState;
 	}
-	if(action.type === "delete_todo_item") {
+	if(action.type === DELETE_TODO_ITEM) {
 		const newState = JSON.parse(JSON.stringify(state));
 		newState.list.splice(action.index, 1);
 		return newState;

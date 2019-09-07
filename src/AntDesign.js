@@ -1,18 +1,8 @@
 import React, { Component } from "react";
-
 import 'antd/dist/antd.css'; // 加载 CSS
-	
 import { Input, Button, List } from 'antd';	//引入Input
-
 import store from "./store";
-
-const data = [
-  'Racing car sprays burning fuel into crowd.',
-  'Japanese princess to wed commoner.',
-  'Australian walks 100km after outback crash.',
-  'Man charged over missing wedding girl.',
-  'Los Angeles battles huge wildfires.',
-];
+import { getInputChangeAction, getAddItemAction, getDeleteItemAction } from "./store/actionCreators";
 
 class Antdesign extends Component {
 	
@@ -50,10 +40,7 @@ class Antdesign extends Component {
 	}
 	
 	handleInputChange(e) {
-		var action = {
-			type: "input_change",
-			value: e.target.value
-		}
+		var action = getInputChangeAction(e.target.value);
 		store.dispatch(action);
 	}
 	
@@ -62,17 +49,12 @@ class Antdesign extends Component {
 	}
 	
 	handleBtnClick() {
-		const action = {
-			type: "add_item"
-		}
+		const action = getAddItemAction();
 		store.dispatch(action);
 	}
 	
 	handleDeleteItem(index) {
-		const action = {
-			type: "delete_todo_item",
-			index
-		}
+		const action = getDeleteItemAction(index);
 		store.dispatch(action);
 	}
 }
