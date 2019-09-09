@@ -156,4 +156,11 @@ store是唯一的
 只有store能改变自己的数据；store的数据是拿到reducer的数据，自己改变内容
 reducer是个纯函数
 
+#reactUI组件（傻瓜组件）   react容器组件（聪明组件）
+#无状态组件
+
+#redux 异步请求axios
+
+#redux-thunk
+
 

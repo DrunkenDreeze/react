@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import 'antd/dist/antd.css'; // 加载 CSS
-import { Input, Button, List } from 'antd';	//引入Input
 import store from "./store";
-import { getInputChangeAction, getAddItemAction, getDeleteItemAction } from "./store/actionCreators";
+import { getTodoList, getInputChangeAction, getAddItemAction, getDeleteItemAction, getInitTodoList } from "./store/actionCreators";
+import TodoListUI from "./TodoListUI";
+
 
 class Antdesign extends Component {
 	
@@ -12,31 +13,25 @@ class Antdesign extends Component {
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.handleResChange = this.handleResChange.bind(this);
 		this.handleBtnClick = this.handleBtnClick.bind(this);
+		this.handleDeleteItem = this.handleDeleteItem.bind(this);
 		
 		store.subscribe(this.handleResChange);//订阅store的改变
 	}
 	
 	render() {
-		return (
-			<div style={{marginLeft:"10px", marginTop:"10px"}}>
-				<div>
-					<Input 
-						value = {this.state.inputValue} 
-						placeholder = "todo info" 
-						type = "text" 
-						style = {{width:"300px",marginRight: "10px"}}
-						onChange = { this.handleInputChange }
-					/>
-					<Button type="primary" onClick={this.handleBtnClick}>提交</Button>
-				</div>
-				<List
-					style={{width:"300px", marginTop:"10px"}}
-					bordered
-					dataSource={this.state.list}
-					renderItem={(item, index) => <List.Item onClick={this.handleDeleteItem.bind(this, index)}>{item}</List.Item>}
-				/>
-			</div>
-		)
+		return (<TodoListUI
+				inputValue = {this.state.inputValue}
+				handleInputChange = {this.handleInputChange}
+				handleBtnClick = {this.handleBtnClick}
+				list = {this.state.list}
+				handleDeleteItem = {this.handleDeleteItem}
+				/>)
+	}
+	
+	componentDidMount() {
+		const action = getTodoList();
+		console.log(action);//action是一个函数，需要redux-thunk来自动执行
+		store.dispatch(action);
 	}
 	
 	handleInputChange(e) {

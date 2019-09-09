@@ -1,4 +1,4 @@
-import { INPUT_CHANGE, ADD_ITEM, DELETE_TODO_ITEM } from "./actionTypes";
+import { INPUT_CHANGE, ADD_ITEM, DELETE_TODO_ITEM, INIT_TODO_LIST } from "./actionTypes";
 
 const defaultState = {
 	inputValue: "",
@@ -12,7 +12,7 @@ export default (state = defaultState, action) => {
 	if(action.type === INPUT_CHANGE) {
 		const newState = JSON.parse(JSON.stringify(state));
 		newState.inputValue = action.value;
-		// state.inputValue = action.value; //这时候就有副作用了
+		// state.inputValue = action.value; //这时候就有副作用了，reducer不能直接改state
 		return newState;
 	}
 	if(action.type === ADD_ITEM) {
@@ -25,6 +25,12 @@ export default (state = defaultState, action) => {
 	if(action.type === DELETE_TODO_ITEM) {
 		const newState = JSON.parse(JSON.stringify(state));
 		newState.list.splice(action.index, 1);
+		return newState;
+	}
+	if(action.type === INIT_TODO_LIST) {
+		console.log(state, action)
+		const newState = JSON.parse(JSON.stringify(state));
+		newState.list = action.data;
 		return newState;
 	}
 	return state; //state就是数据
