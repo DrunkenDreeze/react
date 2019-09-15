@@ -163,4 +163,12 @@ reducer是个纯函数
 
 #redux-thunk
 
+#react-redux使用
+	1.Provider组件
+	2.connect方法export default connect(mapStateToProps, null)(Todolist);	
+		//connect方法作用：让Todolist与store连接起来；
+		//mapStateToProps规则(映射关系):把store数据映射成props
+#写成函数形式传参<li onClick={() => { handleDelete(index) }} key={index}>{item}</li>
+优化：const { inputValue, list, inputChange, handleClick, handleDelete } = this.props;
+
 
